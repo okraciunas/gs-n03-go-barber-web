@@ -7,9 +7,10 @@ Parte web da aplicação **GoBarber**.
 ## Este projeto utiliza:
 
 - `create-react-app` para inicialização e criação do setup inicial;
-- `React` + `TypeScript`;
 - `EditorConfig` + `ESLint` + `Prettier` para formatação de código;
-- `styled-components` para estilização dos componentes;
+- `React` como lib para criação das interfaces;
+- `TypeScript` como conjunto de tipagens (entre outras coisas) para `JavaScript`;
+- `styled-components` + `polished` para escrita de `CSS-in-JS` e estilização dos componentes;
 
 ## Executando o projeto:
 

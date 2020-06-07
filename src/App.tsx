@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react'
 
 import GlobalStyle from './styles/global'
+import SignIn from './pages/SignIn'
 
 const App: FunctionComponent = () => (
   <>
     <GlobalStyle />
-    <h1>Hello World</h1>
+    <SignIn />
   </>
 )
 
