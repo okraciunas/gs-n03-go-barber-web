@@ -7,3 +7,4 @@
 - `create-react-app` para inicialização e criação do setup inicial do projeto;
 - `React` + `TypeScript`;
 - `EditorConfig` + `ESLint` + `Prettier` para formatação de código;
+- `styled-components` para estilização dos componentes;
