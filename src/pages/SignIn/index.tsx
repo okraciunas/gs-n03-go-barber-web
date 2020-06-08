@@ -10,9 +10,11 @@ import Input from './../../components/Input'
 const SignIn: FunctionComponent = () => (
   <Container>
     <Content>
-      <img src={logo} alt="" />
+      <img src={logo} alt="GoBarber" />
 
       <form>
+        <h1>Faça seu logon</h1>
+
         <Input name="email" placeholder="E-mail" icon={FiMail} />
         <Input
           name="password"
