@@ -52,6 +52,8 @@ const Input: FunctionComponent<Props> = ({ name, icon: Icon, ...rest }) => {
         defaultValue={defaultValue}
         {...rest}
       />
+
+      {error}
     </Container>
   )
 }
