@@ -30,6 +30,7 @@
         "tsx": "never"
       }
     ],
+    "no-unused-expressions": "off",
     "react/jsx-one-expressoin-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extention": [
