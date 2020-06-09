@@ -4,6 +4,7 @@ import React, {
   ComponentType,
   useRef,
   useEffect,
+  useState,
 } from 'react'
 import { useField } from '@unform/core'
 import { IconBaseProps } from 'react-icons'
@@ -17,6 +18,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: FunctionComponent<Props> = ({ name, icon: Icon, ...rest }) => {
   const inputRef = useRef(null)
+  const [isFocused, setIsFocused] = useState(false)
   const { registerField, fieldName, defaultValue, error } = useField(name)
 
   useEffect(() => {
@@ -28,9 +30,15 @@ const Input: FunctionComponent<Props> = ({ name, icon: Icon, ...rest }) => {
   }, [registerField, fieldName])
 
   return (
-    <Container>
+    <Container isFocused={isFocused}>
       {Icon && <Icon size={20} />}
-      <input ref={inputRef} {...rest} />
+      <input
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        ref={inputRef}
+        defaultValue={defaultValue}
+        {...rest}
+      />
     </Container>
   )
 }
