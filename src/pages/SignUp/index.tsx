@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { Form } from '@unform/web'
 import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi'
 
 import logo from './../../assets/logo.svg'
@@ -7,33 +8,39 @@ import { Container, Content, Backgorund } from './styles'
 import Button from './../../components/Button'
 import Input from './../../components/Input'
 
-const SignUp: FunctionComponent = () => (
-  <Container>
-    <Backgorund />
+const SignUp: FunctionComponent = () => {
+  function handleSubmit(data: object): void {
+    console.log(data)
+  }
 
-    <Content>
-      <img src={logo} alt="GoBarber" />
+  return (
+    <Container>
+      <Backgorund />
 
-      <form>
-        <h1>Faça seu logon</h1>
+      <Content>
+        <img src={logo} alt="GoBarber" />
 
-        <Input name="name" placeholder="Nome" icon={FiUser} />
-        <Input name="email" placeholder="E-mail" icon={FiMail} />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Senha"
-          icon={FiLock}
-        />
-        <Button type="submit">Cadastrar</Button>
-      </form>
+        <Form onSubmit={handleSubmit}>
+          <h1>Faça seu logon</h1>
 
-      <a href="signin">
-        <FiArrowLeft />
-        Criar conta
-      </a>
-    </Content>
-  </Container>
-)
+          <Input name="name" placeholder="Nome" icon={FiUser} />
+          <Input name="email" placeholder="E-mail" icon={FiMail} />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Senha"
+            icon={FiLock}
+          />
+          <Button type="submit">Cadastrar</Button>
+        </Form>
+
+        <a href="signin">
+          <FiArrowLeft />
+          Criar conta
+        </a>
+      </Content>
+    </Container>
+  )
+}
 
 export default SignUp
