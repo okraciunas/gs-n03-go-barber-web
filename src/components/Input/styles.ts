@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components'
 
+import Tolltip from './../Tooltip'
+
 interface ContainerProps {
+  isErrored: boolean
   isFocused: boolean
   isFilled: boolean
 }
@@ -14,6 +17,12 @@ export const Container = styled.div<ContainerProps>`
   border: 2px solid #232129;
   display: flex;
   align-items: center;
+
+  ${({ isErrored }) =>
+    isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 
   ${({ isFocused }) =>
     isFocused &&
@@ -45,5 +54,23 @@ export const Container = styled.div<ContainerProps>`
 
   svg {
     margin-right: 16px;
+  }
+`
+export const Error = styled(Tolltip)`
+  height: 20px;
+  margin-left: 16px;
+
+  svg {
+    margin: 0;
+    color: #c53030;
+  }
+
+  span {
+    background-color: #c53030;
+    color: #fff;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
   }
 `
