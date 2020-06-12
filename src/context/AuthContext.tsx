@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   useCallback,
   useState,
+  useContext,
 } from 'react'
 
 import api from './../services/api'
@@ -17,7 +18,7 @@ interface AuthState {
   user: object
 }
 
-export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
+const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
@@ -55,4 +56,12 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       {children}
     </AuthContext.Provider>
   )
+}
+
+export function useAuth(): AuthContextData {
+  const context = useContext(AuthContext)
+
+  if (context) return context
+
+  throw new Error('useAuth must be used within an AuthProvider.')
 }

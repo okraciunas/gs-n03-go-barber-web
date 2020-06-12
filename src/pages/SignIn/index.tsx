@@ -1,15 +1,10 @@
-import React, {
-  FunctionComponent,
-  useRef,
-  useCallback,
-  useContext,
-} from 'react'
+import React, { FunctionComponent, useRef, useCallback } from 'react'
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as validation from 'yup'
 
-import { AuthContext } from './../../context/AuthContext'
+import { useAuth } from './../../context/AuthContext'
 
 import logo from './../../assets/logo.svg'
 import { Container, Content, Backgorund } from './styles'
@@ -26,7 +21,7 @@ interface SignInFormData {
 
 const SignIn: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null)
-  const authContext = useContext(AuthContext)
+  const authContext = useAuth()
 
   console.log(authContext.user)
 
