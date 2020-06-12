@@ -1,8 +1,15 @@
-import React, { FunctionComponent, useRef, useCallback } from 'react'
+import React, {
+  FunctionComponent,
+  useRef,
+  useCallback,
+  useContext,
+} from 'react'
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as validation from 'yup'
+
+import { AuthContext } from './../../context/AuthContext'
 
 import logo from './../../assets/logo.svg'
 import { Container, Content, Backgorund } from './styles'
@@ -12,27 +19,42 @@ import Input from './../../components/Input'
 
 import getValidationErrors from './../../utils/get-validation-errors'
 
+interface SignInFormData {
+  email: string
+  password: string
+}
+
 const SignIn: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null)
+  const authContext = useContext(AuthContext)
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = validation.object().shape({
-        email: validation
-          .string()
-          .email('Digite um e-mail válido')
-          .required('E-mail é um campo obrigatório'),
-        password: validation.string().required('Senha é um campo obrigatório'),
-      })
+  console.log(authContext.user)
 
-      await schema.validate(data, {
-        abortEarly: false,
-      })
-    } catch (error) {
-      const errors = getValidationErrors(error)
-      formRef.current?.setErrors(errors)
-    }
-  }, [])
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        const schema = validation.object().shape({
+          email: validation
+            .string()
+            .email('Digite um e-mail válido')
+            .required('E-mail é um campo obrigatório'),
+          password: validation
+            .string()
+            .required('Senha é um campo obrigatório'),
+        })
+
+        await schema.validate(data, {
+          abortEarly: false,
+        })
+
+        authContext.signIn(data.email, data.password)
+      } catch (error) {
+        const errors = getValidationErrors(error)
+        formRef.current?.setErrors(errors)
+      }
+    },
+    [authContext],
+  )
 
   return (
     <Container>
