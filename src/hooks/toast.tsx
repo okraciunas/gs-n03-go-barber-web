@@ -19,7 +19,7 @@ export interface ToastMessage {
 
 interface ToastContextData {
   addToast(message: Omit<ToastMessage, 'id'>): void
-  removeToast(): void
+  removeToast(id: string): void
 }
 
 const ToastContext = createContext<ToastContextData>({} as ToastContextData)
@@ -38,8 +38,8 @@ export const ToastProvider: FunctionComponent = ({ children }) => {
     setToasts(state => [...state, toast])
   }, [])
 
-  const removeToast = useCallback(() => {
-    console.log('removeToast')
+  const removeToast = useCallback((id: string) => {
+    setToasts(state => state.filter(toast => toast.id != id))
   }, [])
 
   return (
