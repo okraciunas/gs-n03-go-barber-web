@@ -4,12 +4,13 @@ import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as validation from 'yup'
 
-import { useAuth } from './../../hooks/auth'
-import { useToast } from './../../hooks/toast'
-
 import logo from './../../assets/logo.svg'
 import { Container, Content, Backgorund } from './styles'
 
+import { useAuth } from './../../hooks/auth'
+import { useToast } from './../../hooks/toast'
+
+import { ToastTypes } from './../../components/ToastContainer/styles'
 import Button from './../../components/Button'
 import Input from './../../components/Input'
 
@@ -23,8 +24,8 @@ interface SignInFormData {
 const SignIn: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null)
 
-  const auth = useAuth()
-  const toast = useToast()
+  const { signIn } = useAuth()
+  const { addToast } = useToast()
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -43,17 +44,21 @@ const SignIn: FunctionComponent = () => {
           abortEarly: false,
         })
 
-        auth.signIn(data.email, data.password)
+        await signIn(data.email, data.password)
       } catch (error) {
         if (error instanceof validation.ValidationError) {
           const errors = getValidationErrors(error)
           formRef.current?.setErrors(errors)
         }
 
-        toast.addToast()
+        addToast({
+          type: ToastTypes.error,
+          title: 'Erro na autenticação',
+          message: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        })
       }
     },
-    [auth, toast],
+    [signIn, addToast],
   )
 
   return (

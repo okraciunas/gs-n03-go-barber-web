@@ -1,42 +1,28 @@
 import React, { FunctionComponent } from 'react'
 import { FiAlertCircle, FiXCircle } from 'react-icons/fi'
 
-import { Container, Toast, ToastTypes } from './styles'
+import { ToastMessage } from './../../hooks/toast'
+import { Container, Toast } from './styles'
 
-const ToastContainer: FunctionComponent = () => {
+interface ToastContainerProps {
+  toasts: ToastMessage[]
+}
+
+const ToastContainer: FunctionComponent<ToastContainerProps> = ({ toasts }) => {
   return (
     <Container>
-      <Toast hasMessage>
-        <FiAlertCircle />
-        <div>
-          <strong>Informação</strong>
-          <p>Mensagem de informação</p>
-        </div>
-        <button type="button">
-          <FiXCircle />
-        </button>
-      </Toast>
-
-      <Toast type={ToastTypes.success} hasMessage={false}>
-        <FiAlertCircle />
-        <div>
-          <strong>Sucesso</strong>
-        </div>
-        <button type="button">
-          <FiXCircle />
-        </button>
-      </Toast>
-
-      <Toast type={ToastTypes.error} hasMessage>
-        <FiAlertCircle />
-        <div>
-          <strong>Erro</strong>
-          <p>Mensagem de erro</p>
-        </div>
-        <button type="button">
-          <FiXCircle />
-        </button>
-      </Toast>
+      {toasts.map(toast => (
+        <Toast key={toast.id} type={toast.type} hasMessage={!!toast.message}>
+          <FiAlertCircle />
+          <div>
+            <strong>{toast.title}</strong>
+            {toast.message && <p>{toast.message}</p>}
+          </div>
+          <button type="button">
+            <FiXCircle />
+          </button>
+        </Toast>
+      ))}
     </Container>
   )
 }

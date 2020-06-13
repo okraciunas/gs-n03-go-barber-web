@@ -48,7 +48,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         user: data.user,
       })
     } catch (error) {
-      // todo
+      throw new Error(error)
     }
   }, [])
 
