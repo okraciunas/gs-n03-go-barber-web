@@ -4,7 +4,8 @@ import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as validation from 'yup'
 
-import { useAuth } from './../../hooks/AuthContext'
+import { useAuth } from './../../hooks/auth'
+import { useToast } from './../../hooks/toast'
 
 import logo from './../../assets/logo.svg'
 import { Container, Content, Backgorund } from './styles'
@@ -21,9 +22,9 @@ interface SignInFormData {
 
 const SignIn: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null)
-  const authContext = useAuth()
 
-  console.log(authContext.user)
+  const auth = useAuth()
+  const toast = useToast()
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -42,13 +43,17 @@ const SignIn: FunctionComponent = () => {
           abortEarly: false,
         })
 
-        authContext.signIn(data.email, data.password)
+        auth.signIn(data.email, data.password)
       } catch (error) {
-        const errors = getValidationErrors(error)
-        formRef.current?.setErrors(errors)
+        if (error instanceof validation.ValidationError) {
+          const errors = getValidationErrors(error)
+          formRef.current?.setErrors(errors)
+        }
+
+        toast.addToast()
       }
     },
-    [authContext],
+    [auth, toast],
   )
 
   return (

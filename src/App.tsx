@@ -1,16 +1,15 @@
 import React, { FunctionComponent } from 'react'
 
-import { AuthProvider } from './hooks/AuthContext'
-
 import GlobalStyle from './styles/global'
+import AppProvider from './hooks/'
 import SignIn from './pages/SignIn'
 
 const App: FunctionComponent = () => (
   <>
     <GlobalStyle />
-    <AuthProvider>
+    <AppProvider>
       <SignIn />
-    </AuthProvider>
+    </AppProvider>
   </>
 )
 
