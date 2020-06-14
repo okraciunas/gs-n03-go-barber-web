@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { uuid } from 'uuidv4'
 
-import { ToastTypes } from './../components/ToastContainer/styles'
+import { ToastTypes } from './../components/ToastContainer/Toast/styles'
 import ToastContainer from './../components/ToastContainer'
 
 export interface ToastMessage {
@@ -39,7 +39,7 @@ export const ToastProvider: FunctionComponent = ({ children }) => {
   }, [])
 
   const removeToast = useCallback((id: string) => {
-    setToasts(state => state.filter(toast => toast.id != id))
+    setToasts(state => state.filter(toast => toast.id !== id))
   }, [])
 
   return (

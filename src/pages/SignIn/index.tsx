@@ -10,7 +10,7 @@ import { Container, Content, Backgorund } from './styles'
 import { useAuth } from './../../hooks/auth'
 import { useToast } from './../../hooks/toast'
 
-import { ToastTypes } from './../../components/ToastContainer/styles'
+import { ToastTypes } from './../../components/ToastContainer/Toast/styles'
 import Button from './../../components/Button'
 import Input from './../../components/Input'
 
