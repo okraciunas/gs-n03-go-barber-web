@@ -22,11 +22,16 @@ const Route: FunctionComponent<RouteProps> = ({
   return (
     <RouterDOMRoute
       {...rest}
-      render={() => {
+      render={({ location }) => {
         return isPrivate === !!user ? (
           <Component />
         ) : (
-          <Redirect to={isPrivate ? '/' : '/dashboard'} />
+          <Redirect
+            to={{
+              pathname: isPrivate ? '/' : '/dashboard',
+              state: { from: location },
+            }}
+          />
         )
       }}
     />
