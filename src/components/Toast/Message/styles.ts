@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { animated } from 'react-spring'
 
-import { ToastTypes } from './../ToastTypes'
+import ToastTypes from './../ToastTypes'
 
 interface ContainerProps {
   type?: ToastTypes

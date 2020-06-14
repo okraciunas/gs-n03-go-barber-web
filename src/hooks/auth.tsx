@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react'
 
-import api from './../services/api'
+import { initSession } from './../services/api'
 
 interface AuthContextData {
   user: object
@@ -38,7 +38,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 
   const signIn = useCallback(async (email: string, password: string) => {
     try {
-      const { data } = await api.post('sessions', { email, password })
+      const { data } = await initSession(email, password)
 
       localStorage.setItem('@GoBarber:token', data.token)
       localStorage.setItem('@GoBarber:user', JSON.stringify(data.user))

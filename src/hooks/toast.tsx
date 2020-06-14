@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { uuid } from 'uuidv4'
 
-import { ToastTypes } from './../components/Toast/ToastTypes'
+import ToastTypes from './../components/Toast/ToastTypes'
 import ToastContainer from './../components/Toast/Container'
 
 export interface ToastData {

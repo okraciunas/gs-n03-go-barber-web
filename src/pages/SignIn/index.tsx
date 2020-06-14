@@ -3,7 +3,7 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as validation from 'yup'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import logo from './../../assets/logo.svg'
 import { Container, Content, ContentAnimated, Backgorund } from './styles'
@@ -11,7 +11,7 @@ import { Container, Content, ContentAnimated, Backgorund } from './styles'
 import { useAuth } from './../../hooks/auth'
 import { useToast } from './../../hooks/toast'
 
-import { ToastTypes } from './../../components/Toast/ToastTypes'
+import ToastTypes from './../../components/Toast/ToastTypes'
 import Button from './../../components/Button'
 import Input from './../../components/Input'
 
@@ -24,9 +24,9 @@ interface SignInFormData {
 
 const SignIn: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null)
-
   const { signIn } = useAuth()
   const { addToast } = useToast()
+  const history = useHistory()
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -46,6 +46,8 @@ const SignIn: FunctionComponent = () => {
         })
 
         await signIn(data.email, data.password)
+
+        history.push('/dashboard')
       } catch (error) {
         if (error instanceof validation.ValidationError) {
           const errors = getValidationErrors(error)
@@ -61,7 +63,7 @@ const SignIn: FunctionComponent = () => {
         })
       }
     },
-    [signIn, addToast],
+    [signIn, addToast, history],
   )
 
   return (
