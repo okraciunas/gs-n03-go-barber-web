@@ -3,9 +3,10 @@ import { FormHandles } from '@unform/core'
 import { Form } from '@unform/web'
 import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi'
 import * as validation from 'yup'
+import { Link } from 'react-router-dom'
 
 import logo from './../../assets/logo.svg'
-import { Container, Content, Backgorund } from './styles'
+import { Container, Content, ContentAnimated, Backgorund } from './styles'
 
 import Button from './../../components/Button'
 import Input from './../../components/Input'
@@ -44,26 +45,28 @@ const SignUp: FunctionComponent = () => {
       <Backgorund />
 
       <Content>
-        <img src={logo} alt="GoBarber" />
+        <ContentAnimated>
+          <img src={logo} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu logon</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu logon</h1>
 
-          <Input name="name" placeholder="Nome" icon={FiUser} />
-          <Input name="email" placeholder="E-mail" icon={FiMail} />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-            icon={FiLock}
-          />
-          <Button type="submit">Cadastrar</Button>
-        </Form>
+            <Input name="name" placeholder="Nome" icon={FiUser} />
+            <Input name="email" placeholder="E-mail" icon={FiMail} />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              icon={FiLock}
+            />
+            <Button type="submit">Cadastrar</Button>
+          </Form>
 
-        <a href="signin">
-          <FiArrowLeft />
-          Criar conta
-        </a>
+          <Link to="/">
+            <FiArrowLeft />
+            Criar conta
+          </Link>
+        </ContentAnimated>
       </Content>
     </Container>
   )
