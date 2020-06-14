@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 import { uuid } from 'uuidv4'
 
-import { ToastTypes } from './../components/ToastContainer/Toast/styles'
-import ToastContainer from './../components/ToastContainer'
+import { ToastTypes } from './../components/Toast/ToastTypes'
+import ToastContainer from './../components/Toast/Container'
 
 export interface ToastMessage {
   id: string

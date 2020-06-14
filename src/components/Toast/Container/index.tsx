@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 
-import Toast from './Toast'
+import Toast from './../Message'
 
-import { ToastMessage } from './../../hooks/toast'
+import { ToastMessage } from './../../../hooks/toast'
 import { Container } from './styles'
 
 interface ToastContainerProps {

@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export enum ToastTypes {
-  info = 'info',
-  success = 'success',
-  error = 'error',
-}
+import { ToastTypes } from './../ToastTypes'
 
 interface ContainerProps {
   type?: ToastTypes
