@@ -3,13 +3,13 @@ import { FiAlertCircle, FiXCircle } from 'react-icons/fi'
 
 import { Container } from './styles'
 
-import { ToastMessage, useToast } from './../../../hooks/toast'
+import { ToastData, useToast } from './../../../hooks/toast'
 
 interface ToastProps {
-  data: ToastMessage
+  data: ToastData
 }
 
-const Toast: FunctionComponent<ToastProps> = ({ data }) => {
+const ToastMessage: FunctionComponent<ToastProps> = ({ data }) => {
   const { removeToast } = useToast()
 
   return (
@@ -26,4 +26,4 @@ const Toast: FunctionComponent<ToastProps> = ({ data }) => {
   )
 }
 
-export default Toast
+export default ToastMessage
