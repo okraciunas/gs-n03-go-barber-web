@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { animated } from 'react-spring'
 
 import { ToastTypes } from './../ToastTypes'
 
@@ -22,7 +23,7 @@ const containerColorsVariations = {
   `,
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = animated(styled.div<ContainerProps>`
   width: 360px;
   position: relative;
   padding: 16px 30px 16px 16px;
@@ -30,7 +31,7 @@ export const Container = styled.div<ContainerProps>`
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   display: flex;
 
-  ${({ type }) => containerColorsVariations[type || 'info']}
+  ${props => containerColorsVariations[props.type || 'info']}
 
   & + div {
     margin-top: 8px;
@@ -61,8 +62,8 @@ export const Container = styled.div<ContainerProps>`
     color: inherit;
   }
 
-  ${({ hasMessage }) =>
-    !hasMessage &&
+  ${props =>
+    !props.hasMessage &&
     css`
       align-items: center;
 
@@ -70,4 +71,4 @@ export const Container = styled.div<ContainerProps>`
         margin-top: 0;
       }
     `}
-`
+`)

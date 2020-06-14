@@ -7,6 +7,7 @@ import { ToastData, useToast } from './../../../hooks/toast'
 
 interface ToastProps {
   data: ToastData
+  style: object
 }
 
 const typeIcon = {
@@ -15,7 +16,7 @@ const typeIcon = {
   error: <FiAlertCircle size={24} />,
 }
 
-const ToastMessage: FunctionComponent<ToastProps> = ({ data }) => {
+const ToastMessage: FunctionComponent<ToastProps> = ({ data, style }) => {
   const { removeToast } = useToast()
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const ToastMessage: FunctionComponent<ToastProps> = ({ data }) => {
   }, [removeToast, data.id])
 
   return (
-    <Container type={data.type} hasMessage={!!data.message}>
+    <Container type={data.type} hasMessage={!!data.message} style={style}>
       {typeIcon[data.type || 'info']}
       <div>
         <strong>{data.title}</strong>
